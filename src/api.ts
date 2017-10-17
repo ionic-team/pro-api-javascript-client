@@ -32,7 +32,7 @@ function _call(endpoint: any, config: ApiCallConfig): Promise<ApiResponse> {
   }
 
   if (config.body) {
-    callConfig.body = config.body;
+    callConfig.body = JSON.stringify(config.body);
   }
 
   return new Promise((resolve, reject) => {

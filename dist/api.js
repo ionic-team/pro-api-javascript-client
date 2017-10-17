@@ -5,7 +5,7 @@ function _call(endpoint, config) {
         headers: { "Content-type": "application/json" }
     };
     if (config.body) {
-        callConfig.body = config.body;
+        callConfig.body = JSON.stringify(config.body);
     }
     return new Promise((resolve, reject) => {
         fetch(API_HOST + endpoint, callConfig).then((res) => {
