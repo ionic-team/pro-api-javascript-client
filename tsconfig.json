@@ -8,12 +8,11 @@
       "dom",
       "es2015"
     ],
-    "moduleResolution": "node",
     "module": "es2015",
     "outDir": "dist",
     "target": "es2015",
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": true
   },
   "include": [
     "src"

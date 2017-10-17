@@ -2,7 +2,7 @@
   "name": "pro-client",
   "version": "0.0.1",
   "description": "A simple ts client for Ionic Pro",
-  "main": "dist/index.js",
+  "main": "dist/client.js",
   "scripts": {
     "test": "test"
   },
@@ -13,6 +13,8 @@
   "author": "Ionic",
   "license": "MIT",
   "dependencies": {
+    "@types/superagent": "^3.5.6",
+    "superagent": "^3.6.3",
     "typescript": "^2.5.3"
   }
 }
