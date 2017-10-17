@@ -1,0 +1,15 @@
+{
+  "name": "pro-client",
+  "version": "0.0.1",
+  "description": "A simple ts client for Ionic Pro",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "typescript",
+    "ionic"
+  ],
+  "author": "Ionic",
+  "license": "MIT"
+}
