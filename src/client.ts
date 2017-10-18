@@ -1,6 +1,6 @@
 import { ApiResponse, Api } from './util/api';
 import { Environment } from './environment';
-import { AppsResource } from './resource/apps'
+import { AppsResource } from './resource/apps';
 
 export interface ProUser {
   email: string;

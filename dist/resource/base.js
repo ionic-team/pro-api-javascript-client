@@ -12,7 +12,10 @@ export class BaseResource {
             });
         });
     }
-    get(pk) {
+    get(pk, params) {
+        if (params) {
+            pk += (pk.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+        }
         return new Promise((resolve, reject) => {
             this.api.get(this.endpoint + '/' + pk).then((res) => {
                 resolve(res.data);
@@ -21,9 +24,13 @@ export class BaseResource {
             });
         });
     }
-    list() {
+    list(params) {
+        let queryString = '/';
+        if (params) {
+            queryString += (queryString.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+        }
         return new Promise((resolve, reject) => {
-            this.api.get(this.endpoint).then((res) => {
+            this.api.get(this.endpoint + queryString).then((res) => {
                 resolve(res.data);
             }, (err) => {
                 reject(err.error || { "error": "Unknown" });

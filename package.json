@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A simple ts client for Ionic Pro",
   "main": "dist/client.js",
+  "types": "dist.client.d.ts",
   "scripts": {
     "build": "node_modules/.bin/tsc",
     "test": "test"

@@ -14,7 +14,10 @@ export class BaseResource {
       });
     }
 
-    get(pk: string): Promise<any> { 
+    get(pk: string, params?: any): Promise<any> {
+      if (params) {
+        pk += (pk.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+      }
       return new Promise((resolve, reject) => {
         this.api.get(this.endpoint + '/' + pk).then((res: ApiResponse) => {
           resolve(res.data);
@@ -24,9 +27,13 @@ export class BaseResource {
       });
     }
 
-    list(): Promise<any> { 
+    list(params?: any): Promise<any> { 
+      let queryString = '/';
+      if (params) {
+        queryString += (queryString.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+      }
       return new Promise((resolve, reject) => {
-        this.api.get(this.endpoint).then((res: ApiResponse) => {
+        this.api.get(this.endpoint + queryString).then((res: ApiResponse) => {
           resolve(res.data);
         }, (err: ApiResponse) => {
           reject(err.error || {"error": "Unknown"});
