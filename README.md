@@ -32,7 +32,7 @@ import { Environment, ProClient, ProUser } from 'pro-client';
 
 // Instantiate the client
 let cfg: Environment = { debug: true }
-let client: ProClient = new ProClient();
+let client: ProClient = new ProClient(cfg);
 
 ...
 
@@ -48,5 +48,15 @@ client.resource.apps.list().then((res: any) => {
   console.log("My apps:", res);
 }, (err: any) => {
   console.error("Error getting apps:", err);
+});
+
+// List native builds for an app
+let appId: string = "abcd1234";
+let filters = {platform: "iOS" }; // Optional
+
+client.resource.package.list(appId, filters).then((res: any) => {
+  console.log("My native builds:", res);
+}, (err: any) => {
+  console.error("Error getting builds:", err);
 });
 ```
