@@ -50,6 +50,8 @@ client.resource.apps.list().then((res: any) => {
   console.error("Error getting apps:", err);
 });
 
+...
+
 // List native builds for an app
 let appId: string = "abcd1234";
 let filters = {platform: "iOS" }; // Optional
