@@ -13,14 +13,20 @@ npm install --save @ionic/pro-sdk
 ```typescript
 import { Environment, ProClient, ProUser } from 'pro-client';
 
+...
+
 // Instantiate the client
 let cfg: Environment = { debug: true }
 let client: ProClient = new ProClient();
+
+...
 
 // Login to Ionic Pro
 client.login("username@test.com", "myAwesomePassword123").then((user: ProUser) => {
   console.log("Logged in", user);
 });
+
+...
 
 // List apps you have access to
 client.resource.apps.list().then((res: any) => {
