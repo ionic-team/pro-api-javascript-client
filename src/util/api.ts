@@ -34,7 +34,7 @@ export class Api {
     }
   }
 
-  _call(endpoint: any, config: ApiCallConfig): Promise<ApiResponse> {
+  private _call(endpoint: any, config: ApiCallConfig): Promise<ApiResponse> {
     let callConfig: any = {
       method: config.method,
       headers: {"Content-type": "application/json"}
