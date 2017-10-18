@@ -1,11 +1,11 @@
 {
   "name": "@ionic/pro-api-javascript-client",
   "version": "0.0.8",
-  "description": "A simple ts client for Ionic Pro",
-  "main": "dist/client.js",
+  "description": "A simple JasvaScript client for interacting with Ionic Pro",
+  "main": "dist/index.js",
   "repository": "https://github.com/ionic-team/pro-sdk.git",
   "issue": "https://github.com/ionic-team/pro-sdk/issues",
-  "types": "dist/client.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "node_modules/.bin/tsc"
   },
@@ -17,6 +17,10 @@
   "author": "Ionic <hi@ionic.io>",
   "license": "MIT",
   "dependencies": {
+    "superagent": "^3.6.3",
     "typescript": "^2.5.3"
+  },
+  "devDependencies": {
+    "@types/superagent": "^3.5.6"
   }
 }

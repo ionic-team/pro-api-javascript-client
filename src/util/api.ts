@@ -1,4 +1,5 @@
 import { Environment }  from '../environment';
+import * as request from 'superagent'
 
 export interface ApiError {
   link?: string;
@@ -34,38 +35,23 @@ export class Api {
     }
   }
 
-  private _call(endpoint: any, config: ApiCallConfig): Promise<ApiResponse> {
-    let callConfig: any = {
-      method: config.method,
-      headers: {"Content-type": "application/json"}
-    }
-  
+  private async _call(endpoint: any, config: ApiCallConfig): Promise<ApiResponse> {
+    let req = request(config.method, this.host + endpoint);
     if (config.body) {
-      callConfig.body = JSON.stringify(config.body);
+      req = req.send(config.body);
+    }
+    req = req.set("Content-type", "application/json")
+    if (this.apiToken) {
+      req = req.set("Authorization", "Bearer " + this.apiToken)
     }
 
-    if (this.apiToken) {
-      callConfig.headers = {
-        "Content-type": "application/json",
-        "Authorization": "Bearer " + this.apiToken
-      }
+    const res = await req;
+
+    if (res.ok) {
+      return res.body;
+    } else {
+      throw res.body;
     }
-  
-    return new Promise((resolve, reject) => {
-      fetch(this.host + endpoint, callConfig).then((res: any) => {
-        res.json().then((r: ApiResponse) => {
-          if (res.ok) {
-            resolve(r);
-          } else {
-            reject(r);
-          }
-        }, (e: any) => {
-          throw new Error(e);
-        });
-      }, (err: any) => {
-        throw new Error(err);
-      })
-    })
   }
   
   del(endpoint: string): Promise<ApiResponse> {

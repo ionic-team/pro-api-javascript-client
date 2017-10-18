@@ -6,9 +6,9 @@
     "experimentalDecorators": false,
     "lib": [
       "dom",
-      "es2015"
+      "esnext"
     ],
-    "module": "es2015",
+    "module": "esnext",
     "outDir": "dist",
     "target": "ES5",
     "noUnusedLocals": true,

@@ -5,8 +5,6 @@ import { PackageResource } from './resource/package';
 import { SnapshotsResource } from './resource/snapshot';
 import { UserResource } from './resource/user';
 
-export { Environment } from './environment';
-
 export interface ProUser {
   email: string;
   id: number;

@@ -1,10 +1,9 @@
 import { Api } from '../util/api';
+import { User } from './user';
 export interface SnapshotListArgs {
     ids?: Array<string>;
     users?: Array<number>;
     ref?: string;
-}
-export interface User {
 }
 export interface SnapshotIOSVersion {
     min: string;
