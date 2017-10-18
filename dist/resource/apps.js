@@ -1,7 +1,7 @@
 import { BaseResource } from './base';
 export class AppsResource {
     constructor(api) {
-        this._base = new BaseResource('/apps/', api);
+        this._base = new BaseResource('/apps', api);
     }
     del(pk, params) {
         return this._base.del(pk, params);

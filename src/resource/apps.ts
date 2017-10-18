@@ -44,7 +44,7 @@ export class AppsResource {
   private _base: BaseResource
 
   constructor(api: Api) {
-    this._base = new BaseResource('/apps/', api);
+    this._base = new BaseResource('/apps', api);
   }
 
   del(pk: string, params?: any): Promise<App> {

@@ -1,4 +1,5 @@
 import { Api } from '../util/api';
+import { Snapshot } from './snapshot';
 export interface PackagePost {
     snapshot_id: string;
     type: string;
@@ -9,13 +10,22 @@ export interface PackageList {
     snapshots?: Array<string>;
     platform?: string;
 }
+export interface NativeBuild {
+    id: string;
+    platform: string;
+    type: string;
+    created: string;
+    finished: string;
+    state: string;
+    snapshot: Snapshot;
+}
 export declare class PackageResource {
     private _base;
     constructor(api: Api);
-    del(appId: string, pk: string): Promise<any>;
+    del(appId: string, pk: string): Promise<NativeBuild>;
     download(appId: string, pk: string): Promise<any>;
-    get(appId: string, pk: string): Promise<any>;
-    list(appId: string, params?: PackageList): Promise<any>;
-    patch(appId: string, pk: string, body: any): Promise<any>;
+    get(appId: string, pk: string): Promise<NativeBuild>;
+    list(appId: string, params?: PackageList): Promise<Array<NativeBuild>>;
+    patch(appId: string, pk: string, body: NativeBuild): Promise<NativeBuild>;
     post(appId: string, body: PackagePost): Promise<any>;
 }
