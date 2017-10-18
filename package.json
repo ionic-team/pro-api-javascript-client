@@ -1,6 +1,6 @@
 {
   "name": "@ionic/pro-api-javascript-client",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A simple ts client for Ionic Pro",
   "private": false,
   "main": "dist/client.js",
