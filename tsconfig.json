@@ -3,10 +3,11 @@
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "declaration": true,
-    "experimentalDecorators": true,
+    "experimentalDecorators": false,
     "lib": [
       "dom",
-      "es2015"
+      "es2015",
+      "es2015.promise"
     ],
     "module": "es2015",
     "outDir": "dist",
