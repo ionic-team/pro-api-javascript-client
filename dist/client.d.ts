@@ -2,6 +2,7 @@ import { Environment } from './environment';
 import { AppsResource } from './resource/apps';
 import { PackageResource } from './resource/package';
 import { SnapshotsResource } from './resource/snapshot';
+export { Environment } from './environment';
 export interface ProUser {
     email: string;
     id: number;

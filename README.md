@@ -1,0 +1,31 @@
+# Ionc Pro API SDK
+
+A simple JasvaScript SDK for interactinve with Ionic Pro
+
+## Installation
+
+```bash
+npm install --save @ionic/pro-sdk
+```
+
+## Usage
+
+```typescript
+import { Environment, ProClient, ProUser } from 'pro-client';
+
+// Instantiate the client
+let cfg: Environment = { debug: true }
+let client: ProClient = new ProClient();
+
+// Login to Ionic Pro
+client.login("username@test.com", "myAwesomePassword123").then((user: ProUser) => {
+  console.log("Logged in", user);
+});
+
+// List apps you have access to
+client.resource.apps.list().then((res: any) => {
+  console.log("My apps:", res);
+}, (err: any) => {
+  console.error("Error getting apps:", err);
+});
+```
