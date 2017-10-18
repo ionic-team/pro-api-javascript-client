@@ -14,9 +14,9 @@ export class SnapshotsResource {
     this._base = new BaseResource('/apps/', api);
   }
 
-  del(appId: string, pk: string, params?: any): Promise<any> {
+  del(appId: string, pk: string): Promise<any> {
     this._base.endpoint = '/apps/' + appId + '/snapshots';
-    return this._base.del(pk, params);
+    return this._base.del(pk);
   }
 
   get(appId: string, pk: string): Promise<any> {
