@@ -3,6 +3,7 @@ import { Environment } from './environment';
 import { AppsResource } from './resource/apps';
 import { PackageResource } from './resource/package';
 import { SnapshotsResource } from './resource/snapshot';
+import { UserResource } from './resource/user';
 
 export { Environment } from './environment';
 
@@ -18,6 +19,7 @@ export interface ClientResources {
   apps: AppsResource;
   snapshots: SnapshotsResource;
   packages: PackageResource;
+  user: UserResource;
 }
 
 export class ProClient {
@@ -45,7 +47,8 @@ export class ProClient {
     this.resource = {
       apps: new AppsResource(this.api),
       snapshots: new SnapshotsResource(this.api),
-      packages: new PackageResource(this.api)
+      packages: new PackageResource(this.api),
+      user: new UserResource(this.api)
     }
   }
 

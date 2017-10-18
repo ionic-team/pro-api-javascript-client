@@ -20,7 +20,7 @@ export interface UserPatch {
   password: string;
 }
 
-export class AppsResource {
+export class UserResource {
   private _base: BaseResource
 
   constructor(api: Api) {
@@ -41,10 +41,6 @@ export class AppsResource {
 
   getDashMeta(pk: string): Promise<any> {
     return this._base.get(pk + '/dash-metadata');
-  }
-
-  list(params?: any): Promise<Array<User>> {
-    return this._base.list(params);
   }
 
   listTokens(pk: string): Promise<any> {

@@ -2,6 +2,7 @@ import { Api } from './util/api';
 import { AppsResource } from './resource/apps';
 import { PackageResource } from './resource/package';
 import { SnapshotsResource } from './resource/snapshot';
+import { UserResource } from './resource/user';
 var ProClient = /** @class */ (function () {
     function ProClient(cfg) {
         this.user = null;
@@ -21,7 +22,8 @@ var ProClient = /** @class */ (function () {
         this.resource = {
             apps: new AppsResource(this.api),
             snapshots: new SnapshotsResource(this.api),
-            packages: new PackageResource(this.api)
+            packages: new PackageResource(this.api),
+            user: new UserResource(this.api)
         };
     }
     ProClient.prototype.login = function (email, password) {
