@@ -1,30 +1,32 @@
 import { BaseResource } from './base';
-export class SnapshotsResource {
-    constructor(api) {
+var SnapshotsResource = /** @class */ (function () {
+    function SnapshotsResource(api) {
         this._base = new BaseResource('/apps/', api);
     }
-    del(appId, pk) {
+    SnapshotsResource.prototype.del = function (appId, pk) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
         return this._base.del(pk);
-    }
-    get(appId, pk) {
+    };
+    SnapshotsResource.prototype.get = function (appId, pk) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
         return this._base.get(pk);
-    }
-    getUrl(appId, pk) {
+    };
+    SnapshotsResource.prototype.getUrl = function (appId, pk) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
         return this._base.get(pk + '/get-url');
-    }
-    list(appId, params) {
+    };
+    SnapshotsResource.prototype.list = function (appId, params) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
         return this._base.list(params);
-    }
-    patch(appId, pk, body) {
+    };
+    SnapshotsResource.prototype.patch = function (appId, pk, body) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
         return this._base.patch(pk, body);
-    }
-    post(appId, body) {
+    };
+    SnapshotsResource.prototype.post = function (appId, body) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
         return this._base.post(body);
-    }
-}
+    };
+    return SnapshotsResource;
+}());
+export { SnapshotsResource };

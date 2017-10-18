@@ -2,8 +2,8 @@ import { Api } from './util/api';
 import { AppsResource } from './resource/apps';
 import { PackageResource } from './resource/package';
 import { SnapshotsResource } from './resource/snapshot';
-export class ProClient {
-    constructor(cfg) {
+var ProClient = /** @class */ (function () {
+    function ProClient(cfg) {
         this.user = null;
         this.env = {
             debug: false,
@@ -24,21 +24,24 @@ export class ProClient {
             packages: new PackageResource(this.api)
         };
     }
-    login(email, password) {
-        return new Promise((resolve, reject) => {
-            this.api.post('/login', {
+    ProClient.prototype.login = function (email, password) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.api.post('/login', {
                 email: email,
                 password: password,
                 source: 'api'
-            }).then((res) => {
-                this.user = res.data.user;
-                this.api.apiToken = res.data.token;
-                console.log("Logged in user:", this.user.name);
-                resolve(this.user);
-            }, (err) => {
+            }).then(function (res) {
+                _this.user = res.data.user;
+                _this.api.apiToken = res.data.token;
+                console.log("Logged in user:", _this.user.name);
+                resolve(_this.user);
+            }, function (err) {
                 console.error("Login error:", err.error.message || "Unknown");
                 reject(err.error);
             });
         });
-    }
-}
+    };
+    return ProClient;
+}());
+export { ProClient };

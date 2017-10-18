@@ -1,12 +1,13 @@
-export class Api {
-    constructor(env) {
+var Api = /** @class */ (function () {
+    function Api(env) {
         this.apiToken = null;
         if (env.host) {
             this.host = env.host;
         }
     }
-    _call(endpoint, config) {
-        let callConfig = {
+    Api.prototype._call = function (endpoint, config) {
+        var _this = this;
+        var callConfig = {
             method: config.method,
             headers: { "Content-type": "application/json" }
         };
@@ -19,43 +20,45 @@ export class Api {
                 "Authorization": "Bearer " + this.apiToken
             };
         }
-        return new Promise((resolve, reject) => {
-            fetch(this.host + endpoint, callConfig).then((res) => {
-                res.json().then((r) => {
+        return new Promise(function (resolve, reject) {
+            fetch(_this.host + endpoint, callConfig).then(function (res) {
+                res.json().then(function (r) {
                     if (res.ok) {
                         resolve(r);
                     }
                     else {
                         reject(r);
                     }
-                }, (e) => {
+                }, function (e) {
                     throw new Error(e);
                 });
-            }, (err) => {
+            }, function (err) {
                 throw new Error(err);
             });
         });
-    }
-    del(endpoint) {
+    };
+    Api.prototype.del = function (endpoint) {
         return this._call(endpoint, {
             method: 'delete'
         });
-    }
-    get(endpoint) {
+    };
+    Api.prototype.get = function (endpoint) {
         return this._call(endpoint, {
             method: 'get'
         });
-    }
-    post(endpoint, body) {
+    };
+    Api.prototype.post = function (endpoint, body) {
         return this._call(endpoint, {
             method: 'post',
             body: body
         });
-    }
-    patch(endpoint, body) {
+    };
+    Api.prototype.patch = function (endpoint, body) {
         return this._call(endpoint, {
             method: 'patch',
             body: body
         });
-    }
-}
+    };
+    return Api;
+}());
+export { Api };

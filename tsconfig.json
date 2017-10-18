@@ -6,12 +6,11 @@
     "experimentalDecorators": false,
     "lib": [
       "dom",
-      "es2015",
-      "es2015.promise"
+      "es2015"
     ],
     "module": "es2015",
     "outDir": "dist",
-    "target": "es2015",
+    "target": "ES5",
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },

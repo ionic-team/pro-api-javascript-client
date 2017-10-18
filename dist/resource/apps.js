@@ -1,39 +1,42 @@
 import { BaseResource } from './base';
-export class AppsResource {
-    constructor(api) {
+var AppsResource = /** @class */ (function () {
+    function AppsResource(api) {
         this._base = new BaseResource('/apps', api);
     }
-    del(pk, params) {
+    AppsResource.prototype.del = function (pk, params) {
         return this._base.del(pk, params);
-    }
-    get(pk) {
+    };
+    AppsResource.prototype.get = function (pk) {
         return this._base.get(pk);
-    }
-    list(params) {
+    };
+    AppsResource.prototype.list = function (params) {
         return this._base.list(params);
-    }
-    patch(pk, body) {
+    };
+    AppsResource.prototype.patch = function (pk, body) {
         return this._base.patch(pk, body);
-    }
-    post(body) {
+    };
+    AppsResource.prototype.post = function (body) {
         return this._base.post(body);
-    }
-    getDashMeta(pk) {
+    };
+    AppsResource.prototype.getDashMeta = function (pk) {
         return this.get(pk + '/dash-metadata');
-    }
-    getFromSlug(slug) {
+    };
+    AppsResource.prototype.getFromSlug = function (slug) {
         return this.get('/slug/' + slug);
-    }
-    setDashMeta(pk, meta) {
+    };
+    AppsResource.prototype.setDashMeta = function (pk, meta) {
         return this._base.patch(pk + '/dash-metadata', meta);
-    }
-    transfer(pk, to) {
-        return new Promise((resolve, reject) => {
-            this._base.api.post(this._base.endpoint + '/' + pk, to).then((res) => {
+    };
+    AppsResource.prototype.transfer = function (pk, to) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this._base.api.post(_this._base.endpoint + '/' + pk, to).then(function (res) {
                 resolve(res.data);
-            }, (err) => {
+            }, function (err) {
                 reject(err.error || { "error": "Unknown" });
             });
         });
-    }
-}
+    };
+    return AppsResource;
+}());
+export { AppsResource };

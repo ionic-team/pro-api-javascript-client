@@ -1,30 +1,32 @@
 import { BaseResource } from './base';
-export class PackageResource {
-    constructor(api) {
+var PackageResource = /** @class */ (function () {
+    function PackageResource(api) {
         this._base = new BaseResource('/apps/', api);
     }
-    del(appId, pk) {
+    PackageResource.prototype.del = function (appId, pk) {
         this._base.endpoint = '/apps/' + appId + '/native-builds';
         return this._base.del(pk);
-    }
-    download(appId, pk) {
+    };
+    PackageResource.prototype.download = function (appId, pk) {
         this._base.endpoint = '/apps/' + appId + '/native-builds';
         return this._base.get(pk + '/download');
-    }
-    get(appId, pk) {
+    };
+    PackageResource.prototype.get = function (appId, pk) {
         this._base.endpoint = '/apps/' + appId + '/native-builds';
         return this._base.get(pk);
-    }
-    list(appId, params) {
+    };
+    PackageResource.prototype.list = function (appId, params) {
         this._base.endpoint = '/apps/' + appId + '/native-builds';
         return this._base.list(params);
-    }
-    patch(appId, pk, body) {
+    };
+    PackageResource.prototype.patch = function (appId, pk, body) {
         this._base.endpoint = '/apps/' + appId + '/native-builds';
         return this._base.patch(pk, body);
-    }
-    post(appId, body) {
+    };
+    PackageResource.prototype.post = function (appId, body) {
         this._base.endpoint = '/apps/' + appId + '/native-builds';
         return this._base.post(body);
-    }
-}
+    };
+    return PackageResource;
+}());
+export { PackageResource };
