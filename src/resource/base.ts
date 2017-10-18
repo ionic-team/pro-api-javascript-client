@@ -4,7 +4,10 @@ export class BaseResource {
 
     constructor(public endpoint: string, public api: Api) {}
 
-    del(pk: string): Promise<any> {
+    del(pk: string, params?: any): Promise<any> {
+      if (params) {
+        pk += (pk.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+      }
       return new Promise((resolve, reject) => {
         this.api.del(this.endpoint + '/' + pk).then((res: ApiResponse) => {
           resolve(res.data);

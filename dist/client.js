@@ -1,5 +1,6 @@
 import { Api } from './util/api';
 import { AppsResource } from './resource/apps';
+import { SnapshotsResource } from './resource/snapshot';
 export class ProClient {
     constructor(cfg) {
         this.user = null;
@@ -17,7 +18,8 @@ export class ProClient {
         }
         this.api = new Api(this.env);
         this.resource = {
-            apps: new AppsResource(this.api)
+            apps: new AppsResource(this.api),
+            snapshots: new SnapshotsResource(this.api)
         };
     }
     login(email, password) {

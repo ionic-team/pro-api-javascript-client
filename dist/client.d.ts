@@ -1,5 +1,6 @@
 import { Environment } from './environment';
 import { AppsResource } from './resource/apps';
+import { SnapshotsResource } from './resource/snapshot';
 export interface ProUser {
     email: string;
     id: number;
@@ -9,6 +10,7 @@ export interface ProUser {
 }
 export interface ClientResources {
     apps: AppsResource;
+    snapshots: SnapshotsResource;
 }
 export declare class ProClient {
     private api;

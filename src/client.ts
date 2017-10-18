@@ -1,6 +1,7 @@
 import { ApiResponse, Api } from './util/api';
 import { Environment } from './environment';
 import { AppsResource } from './resource/apps';
+import { SnapshotsResource } from './resource/snapshot';
 
 export interface ProUser {
   email: string;
@@ -12,6 +13,7 @@ export interface ProUser {
 
 export interface ClientResources {
   apps: AppsResource;
+  snapshots: SnapshotsResource;
 }
 
 export class ProClient {
@@ -37,7 +39,8 @@ export class ProClient {
     this.api = new Api(this.env);
 
     this.resource = {
-      apps: new AppsResource(this.api)
+      apps: new AppsResource(this.api),
+      snapshots: new SnapshotsResource(this.api)
     }
   }
 
