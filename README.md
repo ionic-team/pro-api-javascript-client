@@ -1,6 +1,6 @@
-# Ionic Pro API SDK
+# Ionic Pro API Client
 
-A simple JasvaScript SDK for interacting with Ionic Pro
+A simple JasvaScript client for interacting with Ionic Pro
 
 ## UNDER CONSTRUCTION
 
