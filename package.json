@@ -1,8 +1,10 @@
 {
   "name": "@ionic/pro-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple ts client for Ionic Pro",
   "main": "dist/client.js",
+  "repository": "https://github.com/ionic-team/pro-sdk.git",
+  "issue": "https://github.com/ionic-team/pro-sdk/issues",
   "types": "dist/client.d.ts",
   "scripts": {
     "build": "node_modules/.bin/tsc"
