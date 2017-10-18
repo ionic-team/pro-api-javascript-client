@@ -5,7 +5,7 @@ export class BaseResource {
     }
     del(pk) {
         return new Promise((resolve, reject) => {
-            this.api.del(this.endpoint + pk).then((res) => {
+            this.api.del(this.endpoint + '/' + pk).then((res) => {
                 resolve(res.data);
             }, (err) => {
                 reject(err.error || { "error": "Unknown" });
@@ -14,7 +14,7 @@ export class BaseResource {
     }
     get(pk) {
         return new Promise((resolve, reject) => {
-            this.api.get(this.endpoint + pk).then((res) => {
+            this.api.get(this.endpoint + '/' + pk).then((res) => {
                 resolve(res.data);
             }, (err) => {
                 reject(err.error || { "error": "Unknown" });
@@ -32,7 +32,7 @@ export class BaseResource {
     }
     patch(pk, body) {
         return new Promise((resolve, reject) => {
-            this.api.patch(this.endpoint + pk, body).then((res) => {
+            this.api.patch(this.endpoint + '/' + pk, body).then((res) => {
                 resolve(res.data);
             }, (err) => {
                 reject(err.error || { "error": "Unknown" });

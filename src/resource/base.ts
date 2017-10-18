@@ -4,9 +4,9 @@ export class BaseResource {
 
     constructor(public endpoint: string, public api: Api) {}
 
-    del(pk: string) {
+    del(pk: string): Promise<any> {
       return new Promise((resolve, reject) => {
-        this.api.del(this.endpoint + pk).then((res: ApiResponse) => {
+        this.api.del(this.endpoint + '/' + pk).then((res: ApiResponse) => {
           resolve(res.data);
         }, (err: ApiResponse) => {
           reject(err.error || {"error": "Unknown"});
@@ -14,9 +14,9 @@ export class BaseResource {
       });
     }
 
-    get(pk: string) { 
+    get(pk: string): Promise<any> { 
       return new Promise((resolve, reject) => {
-        this.api.get(this.endpoint + pk).then((res: ApiResponse) => {
+        this.api.get(this.endpoint + '/' + pk).then((res: ApiResponse) => {
           resolve(res.data);
         }, (err: ApiResponse) => {
           reject(err.error || {"error": "Unknown"});
@@ -24,7 +24,7 @@ export class BaseResource {
       });
     }
 
-    list() { 
+    list(): Promise<any> { 
       return new Promise((resolve, reject) => {
         this.api.get(this.endpoint).then((res: ApiResponse) => {
           resolve(res.data);
@@ -34,9 +34,9 @@ export class BaseResource {
       });
      }
 
-    patch(pk: string, body: any) {
+    patch(pk: string, body: any): Promise<any> {
       return new Promise((resolve, reject) => {
-        this.api.patch(this.endpoint + pk, body).then((res: ApiResponse) => {
+        this.api.patch(this.endpoint + '/' + pk, body).then((res: ApiResponse) => {
           resolve(res.data);
         }, (err: ApiResponse) => {
           reject(err.error || {"error": "Unknown"});
@@ -44,7 +44,7 @@ export class BaseResource {
       });
     }
 
-    post(body: any) { 
+    post(body: any): Promise<any> { 
       return new Promise((resolve, reject) => {
         this.api.post(this.endpoint, body).then((res: ApiResponse) => {
           resolve(res.data);
