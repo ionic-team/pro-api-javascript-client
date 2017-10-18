@@ -1,1 +1,4 @@
-export const API_HOST = "https://api.ionicjs.com";
+export interface Environment {
+  debug?: Boolean;
+  host?: string;
+}

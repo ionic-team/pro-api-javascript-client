@@ -1,48 +1,55 @@
-import { API_HOST } from './environment';
-function _call(endpoint, config) {
-    let callConfig = {
-        method: config.method,
-        headers: { "Content-type": "application/json" }
-    };
-    if (config.body) {
-        callConfig.body = JSON.stringify(config.body);
+export class Api {
+    constructor(env) {
+        this.apiToken = null;
+        if (env.host) {
+            this.host = env.host;
+        }
     }
-    return new Promise((resolve, reject) => {
-        fetch(API_HOST + endpoint, callConfig).then((res) => {
-            res.json().then((r) => {
-                if (res.ok) {
-                    resolve(r);
-                }
-                else {
-                    reject(r);
-                }
-            }, (e) => {
-                throw new Error(e);
+    _call(endpoint, config) {
+        let callConfig = {
+            method: config.method,
+            headers: { "Content-type": "application/json" }
+        };
+        if (config.body) {
+            callConfig.body = JSON.stringify(config.body);
+        }
+        return new Promise((resolve, reject) => {
+            fetch(this.host + endpoint, callConfig).then((res) => {
+                res.json().then((r) => {
+                    if (res.ok) {
+                        resolve(r);
+                    }
+                    else {
+                        reject(r);
+                    }
+                }, (e) => {
+                    throw new Error(e);
+                });
+            }, (err) => {
+                throw new Error(err);
             });
-        }, (err) => {
-            throw new Error(err);
         });
-    });
-}
-export function del(endpoint) {
-    return _call(endpoint, {
-        method: 'delete'
-    });
-}
-export function get(endpoint) {
-    return _call(endpoint, {
-        method: 'get'
-    });
-}
-export function post(endpoint, body) {
-    return _call(endpoint, {
-        method: 'post',
-        body: body
-    });
-}
-export function patch(endpoint, body) {
-    return _call(endpoint, {
-        method: 'patch',
-        body: body
-    });
+    }
+    del(endpoint) {
+        return this._call(endpoint, {
+            method: 'delete'
+        });
+    }
+    get(endpoint) {
+        return this._call(endpoint, {
+            method: 'get'
+        });
+    }
+    post(endpoint, body) {
+        return this._call(endpoint, {
+            method: 'post',
+            body: body
+        });
+    }
+    patch(endpoint, body) {
+        return this._call(endpoint, {
+            method: 'patch',
+            body: body
+        });
+    }
 }

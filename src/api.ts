@@ -1,4 +1,4 @@
-import { API_HOST }  from './environment';
+import { Environment }  from './environment';
 
 export interface ApiError {
   link?: string;
@@ -24,56 +24,66 @@ export interface ApiCallConfig {
   body?: any;
 }
 
-function _call(endpoint: any, config: ApiCallConfig): Promise<ApiResponse> {
+export class Api {
+  host: string;
+  apiToken: string = null;
 
-  let callConfig: any = {
-    method: config.method,
-    headers: {"Content-type": "application/json"}
+  constructor(env: Environment) {
+    if (env.host) {
+      this.host = env.host;
+    }
   }
 
-  if (config.body) {
-    callConfig.body = JSON.stringify(config.body);
-  }
-
-  return new Promise((resolve, reject) => {
-    fetch(API_HOST + endpoint, callConfig).then((res: any) => {
-      res.json().then((r: ApiResponse) => {
-        if (res.ok) {
-          resolve(r);
-        } else {
-          reject(r);
-        }
-      }, (e: any) => {
-        throw new Error(e);
-      });
-    }, (err: any) => {
-      throw new Error(err);
+  _call(endpoint: any, config: ApiCallConfig): Promise<ApiResponse> {
+    let callConfig: any = {
+      method: config.method,
+      headers: {"Content-type": "application/json"}
+    }
+  
+    if (config.body) {
+      callConfig.body = JSON.stringify(config.body);
+    }
+  
+    return new Promise((resolve, reject) => {
+      fetch(this.host + endpoint, callConfig).then((res: any) => {
+        res.json().then((r: ApiResponse) => {
+          if (res.ok) {
+            resolve(r);
+          } else {
+            reject(r);
+          }
+        }, (e: any) => {
+          throw new Error(e);
+        });
+      }, (err: any) => {
+        throw new Error(err);
+      })
     })
-  })
-}
-
-export function del(endpoint: string): Promise<ApiResponse> {
-  return _call(endpoint, {
-    method: 'delete'
-  });
-}
-
-export function get(endpoint: string): Promise<ApiResponse> {
-  return _call(endpoint, {
-    method: 'get'
-  });
-}
-
-export function post(endpoint: string, body: any): Promise<ApiResponse> {
-  return _call(endpoint, {
-    method: 'post',
-    body: body
-  });
-}
-
-export function patch(endpoint: string, body: any): Promise<ApiResponse> {
-  return _call(endpoint, {
-    method: 'patch',
-    body: body
-  });
+  }
+  
+  del(endpoint: string): Promise<ApiResponse> {
+    return this._call(endpoint, {
+      method: 'delete'
+    });
+  }
+  
+  get(endpoint: string): Promise<ApiResponse> {
+    return this._call(endpoint, {
+      method: 'get'
+    });
+  }
+  
+  post(endpoint: string, body: any): Promise<ApiResponse> {
+    return this._call(endpoint, {
+      method: 'post',
+      body: body
+    });
+  }
+  
+  patch(endpoint: string, body: any): Promise<ApiResponse> {
+    return this._call(endpoint, {
+      method: 'patch',
+      body: body
+    });
+  }
 }
