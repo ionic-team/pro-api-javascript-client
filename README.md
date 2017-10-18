@@ -9,7 +9,7 @@ This is still in active development, and is far from comprehensive at the moment
 ## Installation
 
 ```bash
-npm install --save @ionic/pro-sdk
+npm install --save @ionic/pro-api-javascript-client
 ```
 
 ## Usage
