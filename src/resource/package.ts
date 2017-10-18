@@ -1,5 +1,6 @@
 import { Api } from '../util/api';
 import { BaseResource } from './base';
+import { Snapshot } from './snapshot';
 
 export interface PackagePost {
   snapshot_id: string;
@@ -13,6 +14,16 @@ export interface PackageList {
   platform?: string;
 }
 
+export interface NativeBuild {
+  id: string;
+  platform: string;
+  type: string;
+  created: string;
+  finished: string;
+  state: string;
+  snapshot: Snapshot;
+}
+
 export class PackageResource {
   private _base: BaseResource
 
@@ -20,7 +31,7 @@ export class PackageResource {
     this._base = new BaseResource('/apps/', api);
   }
 
-  del(appId: string, pk: string): Promise<any> {
+  del(appId: string, pk: string): Promise<NativeBuild> {
     this._base.endpoint = '/apps/' + appId + '/native-builds';
     return this._base.del(pk);
   }
@@ -30,17 +41,17 @@ export class PackageResource {
     return this._base.get(pk + '/download');
   }
 
-  get(appId: string, pk: string): Promise<any> {
+  get(appId: string, pk: string): Promise<NativeBuild> {
     this._base.endpoint = '/apps/' + appId + '/native-builds';
     return this._base.get(pk);
   }
 
-  list(appId: string, params?: PackageList): Promise<any> {
+  list(appId: string, params?: PackageList): Promise<Array<NativeBuild>> {
     this._base.endpoint = '/apps/' + appId + '/native-builds';
     return this._base.list(params);
   }
 
-  patch(appId: string, pk: string, body: any): Promise<any> {
+  patch(appId: string, pk: string, body: NativeBuild): Promise<NativeBuild> {
     this._base.endpoint = '/apps/' + appId + '/native-builds';
     return this._base.patch(pk, body);
   }
