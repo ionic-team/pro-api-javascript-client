@@ -2,9 +2,20 @@
 
 A simple JasvaScript client for interacting with Ionic Pro
 
-## UNDER CONSTRUCTION
+## Alpha Notice
 
-This is still in active development, and is far from comprehensive at the moment.  Most of it as as-of-yet undocumented and is presented "as is".
+This is still in active development, and is far from comprehensive at the moment.  
+
+### Available API Resources
+
+- [x] Apps
+- [x] Snapshots (JS Builds)
+- [x] Packages (Native Builds)
+- [x] Users
+- [ ] Deploy channels
+- [ ] Organizations
+- [ ] Teams
+- [ ] View Testers
 
 ## Installation
 
