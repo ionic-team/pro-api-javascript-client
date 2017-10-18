@@ -19,12 +19,17 @@ export class SnapshotsResource {
     return this._base.del(pk, params);
   }
 
-  get(appId: string, pk: string, params?: any): Promise<any> {
+  get(appId: string, pk: string): Promise<any> {
     this._base.endpoint = '/apps/' + appId + '/snapshots';
-    return this._base.get(pk, params);
+    return this._base.get(pk);
   }
 
-  list(appId: string, params?: any): Promise<any> {
+  getUrl(appId: string, pk: string): Promise<any> {
+    this._base.endpoint = '/apps/' + appId + '/snapshots';
+    return this._base.get(pk + '/get-url');
+  }
+
+  list(appId: string, params?: SnapshotListArgs): Promise<any> {
     this._base.endpoint = '/apps/' + appId + '/snapshots';
     return this._base.list(params);
   }

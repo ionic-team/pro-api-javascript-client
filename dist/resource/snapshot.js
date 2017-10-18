@@ -7,9 +7,13 @@ export class SnapshotsResource {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
         return this._base.del(pk, params);
     }
-    get(appId, pk, params) {
+    get(appId, pk) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
-        return this._base.get(pk, params);
+        return this._base.get(pk);
+    }
+    getUrl(appId, pk) {
+        this._base.endpoint = '/apps/' + appId + '/snapshots';
+        return this._base.get(pk + '/get-url');
     }
     list(appId, params) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
