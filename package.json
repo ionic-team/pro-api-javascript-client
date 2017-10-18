@@ -1,5 +1,5 @@
 {
-  "name": "@ionic/pro-sdk",
+  "name": "@ionic/pro-api-javascript-client",
   "version": "0.0.4",
   "description": "A simple ts client for Ionic Pro",
   "private": false,
@@ -12,6 +12,7 @@
   },
   "keywords": [
     "typescript",
+    "javascript",
     "ionic"
   ],
   "author": "Ionic <hi@ionic.io>",
