@@ -1,4 +1,4 @@
-import { Environment }  from './environment';
+import { Environment }  from '../environment';
 
 export interface ApiError {
   link?: string;
@@ -42,6 +42,13 @@ export class Api {
   
     if (config.body) {
       callConfig.body = JSON.stringify(config.body);
+    }
+
+    if (this.apiToken) {
+      callConfig.headers = {
+        "Content-type": "application/json",
+        "Authorization": "Bearer " + this.apiToken
+      }
     }
   
     return new Promise((resolve, reject) => {

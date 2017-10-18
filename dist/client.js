@@ -1,4 +1,5 @@
-import { Api } from './api';
+import { Api } from './util/api';
+import { AppsResource } from './resource/apps';
 export class ProClient {
     constructor(cfg) {
         this.user = null;
@@ -15,6 +16,9 @@ export class ProClient {
             }
         }
         this.api = new Api(this.env);
+        this.resource = {
+            apps: new AppsResource(this.api)
+        };
     }
     login(email, password) {
         return new Promise((resolve, reject) => {

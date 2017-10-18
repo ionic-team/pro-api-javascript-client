@@ -1,5 +1,6 @@
-import { ApiResponse, Api } from './api';
+import { ApiResponse, Api } from './util/api';
 import { Environment } from './environment';
+import { AppsResource } from './resource/apps'
 
 export interface ProUser {
   email: string;
@@ -9,10 +10,15 @@ export interface ProUser {
   teams: any;
 }
 
+export interface ClientResources {
+  apps: AppsResource;
+}
+
 export class ProClient {
-  api: Api;
-  user: ProUser = null;
+  private api: Api;
   env: Environment;
+  resource: ClientResources;
+  user: ProUser = null;
 
   constructor(cfg?: Environment) {
     this.env = {
@@ -29,6 +35,10 @@ export class ProClient {
     }
 
     this.api = new Api(this.env);
+
+    this.resource = {
+      apps: new AppsResource(this.api)
+    }
   }
 
   login(email: string, password: string): Promise<ProUser>  {
@@ -48,4 +58,5 @@ export class ProClient {
       });
     });
   }
+
 }
