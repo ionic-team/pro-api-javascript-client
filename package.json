@@ -2,7 +2,6 @@
   "name": "@ionic/pro-api-javascript-client",
   "version": "0.0.7",
   "description": "A simple ts client for Ionic Pro",
-  "private": false,
   "main": "dist/client.js",
   "repository": "https://github.com/ionic-team/pro-sdk.git",
   "issue": "https://github.com/ionic-team/pro-sdk/issues",
