@@ -2,6 +2,10 @@
 
 A simple JasvaScript SDK for interacting with Ionic Pro
 
+## UNDER CONSTRUCTION
+
+This is still in active development, and is far from comprehensive at the moment.  Most of it as as-of-yet undocumented and is presented "as is".
+
 ## Installation
 
 ```bash
