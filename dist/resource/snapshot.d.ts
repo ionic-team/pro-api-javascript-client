@@ -7,7 +7,7 @@ export interface SnapshotListArgs {
 export declare class SnapshotsResource {
     private _base;
     constructor(api: Api);
-    del(appId: string, pk: string, params?: any): Promise<any>;
+    del(appId: string, pk: string): Promise<any>;
     get(appId: string, pk: string): Promise<any>;
     getUrl(appId: string, pk: string): Promise<any>;
     list(appId: string, params?: SnapshotListArgs): Promise<any>;

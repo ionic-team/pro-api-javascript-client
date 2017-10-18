@@ -1,5 +1,6 @@
 import { Api } from './util/api';
 import { AppsResource } from './resource/apps';
+import { PackageResource } from './resource/package';
 import { SnapshotsResource } from './resource/snapshot';
 export class ProClient {
     constructor(cfg) {
@@ -19,7 +20,8 @@ export class ProClient {
         this.api = new Api(this.env);
         this.resource = {
             apps: new AppsResource(this.api),
-            snapshots: new SnapshotsResource(this.api)
+            snapshots: new SnapshotsResource(this.api),
+            packages: new PackageResource(this.api)
         };
     }
     login(email, password) {
@@ -35,7 +37,7 @@ export class ProClient {
                 resolve(this.user);
             }, (err) => {
                 console.error("Login error:", err.error.message || "Unknown");
-                reject(null);
+                reject(err.error);
             });
         });
     }

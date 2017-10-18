@@ -60,7 +60,7 @@ export class ProClient {
         resolve(this.user);
       }, (err: ApiResponse) => {
         console.error("Login error:", err.error.message || "Unknown");
-        reject(null);
+        reject(err.error);
       });
     });
   }

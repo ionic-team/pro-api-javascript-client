@@ -3,9 +3,9 @@ export class SnapshotsResource {
     constructor(api) {
         this._base = new BaseResource('/apps/', api);
     }
-    del(appId, pk, params) {
+    del(appId, pk) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
-        return this._base.del(pk, params);
+        return this._base.del(pk);
     }
     get(appId, pk) {
         this._base.endpoint = '/apps/' + appId + '/snapshots';
