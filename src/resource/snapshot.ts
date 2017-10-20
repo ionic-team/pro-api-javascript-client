@@ -1,5 +1,5 @@
-import { Api } from '../util/api';
 import { BaseResource } from './base';
+import { SubResource } from './sub';
 import { User } from './user'
 
 export interface SnapshotListArgs {
@@ -34,40 +34,19 @@ export interface Snapshot {
   short_sha: string;
 }
 
-export class SnapshotsResource {
-  private _base: BaseResource
+export class SnapshotsResource extends SubResource {
 
-  constructor(api: Api) {
-    this._base = new BaseResource('/apps/', api);
-  }
+  constructor(base: BaseResource) { super(base, '/snapshots'); }
 
-  del(appId: string, pk: string): Promise<Snapshot> {
-    this._base.endpoint = '/apps/' + appId + '/snapshots';
-    return this._base.del(pk);
-  }
+  del(appId: string, pk: string): Promise<Snapshot> { return super.del(appId, pk); }
 
-  get(appId: string, pk: string): Promise<Snapshot> {
-    this._base.endpoint = '/apps/' + appId + '/snapshots';
-    return this._base.get(pk);
-  }
+  get(appId: string, pk: string): Promise<Snapshot> { return super.get(appId, pk); }
 
-  getUrl(appId: string, pk: string): Promise<any> {
-    this._base.endpoint = '/apps/' + appId + '/snapshots';
-    return this._base.get(pk + '/get-url');
-  }
+  getUrl(appId: string, pk: string): Promise<any> { return super.get(appId, pk + '/get-url'); }
 
-  list(appId: string, params?: SnapshotListArgs): Promise<Array<Snapshot>> {
-    this._base.endpoint = '/apps/' + appId + '/snapshots';
-    return this._base.list(params);
-  }
+  list(appId: string, params?: SnapshotListArgs): Promise<Array<Snapshot>> { return super.list(appId, params); }
 
-  patch(appId: string, pk: string, body: Snapshot): Promise<Snapshot> {
-    this._base.endpoint = '/apps/' + appId + '/snapshots';
-    return this._base.patch(pk, body);
-  }
+  patch(appId: string, pk: string, body: Snapshot): Promise<Snapshot> { return super.patch(appId, pk, body); }
 
-  post(appId: string, body: Snapshot): Promise<Snapshot> {
-    this._base.endpoint = '/apps/' + appId + '/snapshots';
-    return this._base.post(body);
-  }
+  post(appId: string, body: Snapshot): Promise<Snapshot> { return super.post(appId, body); }
 }

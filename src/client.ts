@@ -27,6 +27,7 @@ export class ProClient {
   user: ProUser = null;
 
   constructor(cfg?: Environment) {
+    // Set config from env
     this.env = {
       debug: false,
       host: "https://api.ionicjs.com"
@@ -40,11 +41,19 @@ export class ProClient {
       }
     }
 
+    // Instantiate API
     this.api = new Api(this.env);
 
+    // Instantiate base resources
+    var apps = new AppsResource(this.api);
+
+    // Instantiate subresources
+    var snapshots = new SnapshotsResource(apps);
+
+    // Set resources on client
     this.resource = {
-      apps: new AppsResource(this.api),
-      snapshots: new SnapshotsResource(this.api),
+      apps: apps,
+      snapshots: snapshots,
       packages: new PackageResource(this.api),
       user: new UserResource(this.api)
     }

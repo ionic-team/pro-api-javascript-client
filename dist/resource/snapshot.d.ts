@@ -1,4 +1,5 @@
-import { Api } from '../util/api';
+import { BaseResource } from './base';
+import { SubResource } from './sub';
 import { User } from './user';
 export interface SnapshotListArgs {
     ids?: Array<string>;
@@ -28,9 +29,8 @@ export interface Snapshot {
     created: string;
     short_sha: string;
 }
-export declare class SnapshotsResource {
-    private _base;
-    constructor(api: Api);
+export declare class SnapshotsResource extends SubResource {
+    constructor(base: BaseResource);
     del(appId: string, pk: string): Promise<Snapshot>;
     get(appId: string, pk: string): Promise<Snapshot>;
     getUrl(appId: string, pk: string): Promise<any>;
