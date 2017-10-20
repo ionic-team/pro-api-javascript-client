@@ -3,15 +3,7 @@ import { Environment } from './environment';
 import { AppsResource } from './resource/apps';
 import { PackageResource } from './resource/package';
 import { SnapshotsResource } from './resource/snapshot';
-import { UserResource } from './resource/user';
-
-export interface ProUser {
-  email: string;
-  id: number;
-  name: string;
-  orgs: any;
-  teams: any;
-}
+import { User, UserResource } from './resource/user';
 
 export interface ClientResources {
   apps: AppsResource;
@@ -24,7 +16,7 @@ export class ProClient {
   private api: Api;
   env: Environment;
   resource: ClientResources;
-  user: ProUser = null;
+  user: User = null;
 
   constructor(cfg?: Environment) {
     // Set config from env
@@ -61,7 +53,7 @@ export class ProClient {
     }
   }
 
-  login(email: string, password: string): Promise<ProUser>  {
+  login(email: string, password: string): Promise<User>  {
     return new Promise((resolve, reject) => {
       this.api.post('/login', {
         email: email,

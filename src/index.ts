@@ -1,5 +1,5 @@
 // Main client
-export { ClientResources, ProClient, ProUser } from './client';
+export { ClientResources, ProClient } from './client';
 
 // Initialization object
 export { Environment } from './environment';

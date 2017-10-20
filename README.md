@@ -1,6 +1,6 @@
 # Ionic Pro API Client
 
-A simple JasvaScript client for interacting with Ionic Pro
+A simple JavaScript client for interacting with Ionic Pro
 
 ## Alpha Notice
 
@@ -26,7 +26,7 @@ npm install --save @ionic/pro-api-javascript-client
 ## Usage
 
 ```typescript
-import { Environment, ProClient, ProUser } from 'pro-client';
+import { Environment, ProClient, User } from 'pro-client';
 
 ...
 
@@ -37,7 +37,7 @@ let client: ProClient = new ProClient(cfg);
 ...
 
 // Login to Ionic Pro
-client.login("username@test.com", "myAwesomePassword123").then((user: ProUser) => {
+client.login("username@test.com", "myAwesomePassword123").then((user: User) => {
   console.log("Logged in", user);
 });
 

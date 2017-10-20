@@ -4,13 +4,13 @@ var SubResource = /** @class */ (function () {
         this.endpoint = endpoint;
         this.base = new BaseResource(base.endpoint, base.api);
     }
-    SubResource.prototype.del = function (basePk, pk) {
+    SubResource.prototype.del = function (basePk, pk, params) {
         this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-        return this.base.del(pk);
+        return this.base.del(pk, params);
     };
-    SubResource.prototype.get = function (basePk, pk) {
+    SubResource.prototype.get = function (basePk, pk, params) {
         this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-        return this.base.get(pk);
+        return this.base.get(pk, params);
     };
     SubResource.prototype.list = function (basePk, params) {
         this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;

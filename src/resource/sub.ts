@@ -7,14 +7,14 @@ export class SubResource {
     this.base = new BaseResource(base.endpoint, base.api);
   }
 
-  del(basePk: string, pk: string): Promise<any> {
+  del(basePk: string, pk: string, params?: any): Promise<any> {
     this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-    return this.base.del(pk);
+    return this.base.del(pk, params);
   }
 
-  get(basePk: string, pk: string): Promise<any> {
+  get(basePk: string, pk: string, params?: any): Promise<any> {
     this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-    return this.base.get(pk);
+    return this.base.get(pk, params);
   }
 
   list(basePk: string, params?: any): Promise<Array<any>> {

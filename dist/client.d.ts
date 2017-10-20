@@ -2,14 +2,7 @@ import { Environment } from './environment';
 import { AppsResource } from './resource/apps';
 import { PackageResource } from './resource/package';
 import { SnapshotsResource } from './resource/snapshot';
-import { UserResource } from './resource/user';
-export interface ProUser {
-    email: string;
-    id: number;
-    name: string;
-    orgs: any;
-    teams: any;
-}
+import { User, UserResource } from './resource/user';
 export interface ClientResources {
     apps: AppsResource;
     snapshots: SnapshotsResource;
@@ -20,7 +13,7 @@ export declare class ProClient {
     private api;
     env: Environment;
     resource: ClientResources;
-    user: ProUser;
+    user: User;
     constructor(cfg?: Environment);
-    login(email: string, password: string): Promise<ProUser>;
+    login(email: string, password: string): Promise<User>;
 }
