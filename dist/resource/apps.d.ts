@@ -1,4 +1,5 @@
 import { Api } from '../util/api';
+import { BaseResource } from './base';
 export interface AppTransfer {
     to: string;
 }
@@ -33,8 +34,7 @@ export interface App {
     org: Org;
     repo_url: string;
 }
-export declare class AppsResource {
-    private _base;
+export declare class AppsResource extends BaseResource {
     constructor(api: Api);
     del(pk: string, params?: any): Promise<App>;
     get(pk: string): Promise<App>;

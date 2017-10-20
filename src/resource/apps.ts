@@ -40,48 +40,29 @@ export interface App {
   repo_url: string;
 }
 
-export class AppsResource {
-  private _base: BaseResource
+export class AppsResource extends BaseResource {
 
-  constructor(api: Api) {
-    this._base = new BaseResource('/apps', api);
-  }
+  constructor(api: Api) { super('/apps', api); }
 
-  del(pk: string, params?: any): Promise<App> {
-    return this._base.del(pk, params);
-  }
+  del(pk: string, params?: any): Promise<App> { return super.del(pk, params); }
 
-  get(pk: string): Promise<App> {
-    return this._base.get(pk);
-  }
+  get(pk: string): Promise<App> { return super.get(pk); }
 
-  list(params?: any): Promise<Array<App>> {
-    return this._base.list(params);
-  }
+  list(params?: any): Promise<Array<App>> { return super.list(params); }
 
-  patch(pk: string, body: App): Promise<App> {
-    return this._base.patch(pk, body);
-  }
+  patch(pk: string, body: App): Promise<App> { return super.patch(pk, body); }
 
-  post(body: App): Promise<App> {
-    return this._base.post(body);
-  }
+  post(body: App): Promise<App> { return super.post(body); }
 
-  getDashMeta(pk: string): Promise<any> {
-    return this.get(pk + '/dash-metadata');
-  }
+  getDashMeta(pk: string): Promise<any> { return super.get(pk + '/dash-metadata'); }
 
-  getFromSlug(slug: string): Promise<any> {
-    return this.get('/slug/' + slug);
-  }
+  getFromSlug(slug: string): Promise<any> { return super.get('/slug/' + slug); }
 
-  setDashMeta(pk: string, meta: DashMetadata): Promise<any> {
-    return this._base.patch(pk + '/dash-metadata', meta);
-  }
+  setDashMeta(pk: string, meta: DashMetadata): Promise<any> { return super.patch(pk + '/dash-metadata', meta); }
 
   transfer(pk: string, to: AppTransfer): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._base.api.post(this._base.endpoint + '/' + pk, to).then((res: ApiResponse) => {
+      this.api.post(this.endpoint + '/' + pk, to).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {
         reject(err.error || {"error": "Unknown"});
