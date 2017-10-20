@@ -17,10 +17,12 @@
   "author": "Ionic <hi@ionic.io>",
   "license": "MIT",
   "dependencies": {
+    "jsonwebtoken": "^8.1.0",
     "superagent": "^3.6.3",
     "typescript": "^2.5.3"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^7.2.3",
     "@types/superagent": "^3.5.6"
   }
 }
