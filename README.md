@@ -54,7 +54,7 @@ client.resource.apps.list().then((res: any) => {
 
 // List native builds for an app
 let appId: string = "abcd1234";
-let filters = {platform: "iOS" }; // Optional
+let filters = { platform: "iOS" }; // Optional
 
 client.resource.package.list(appId, filters).then((res: any) => {
   console.log("My native builds:", res);

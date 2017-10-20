@@ -1,5 +1,5 @@
-import { Api } from '../util/api';
 import { BaseResource } from './base';
+import { SubResource } from './sub';
 import { Snapshot } from './snapshot';
 
 export interface PackagePost {
@@ -24,40 +24,19 @@ export interface NativeBuild {
   snapshot: Snapshot;
 }
 
-export class PackageResource {
-  private _base: BaseResource
+export class PackageResource extends SubResource {
 
-  constructor(api: Api) {
-    this._base = new BaseResource('/apps/', api);
-  }
+  constructor(base: BaseResource) { super(base, '/native-builds'); }
 
-  del(appId: string, pk: string): Promise<NativeBuild> {
-    this._base.endpoint = '/apps/' + appId + '/native-builds';
-    return this._base.del(pk);
-  }
+  del(appId: string, pk: string): Promise<NativeBuild> { return super.del(appId, pk); }
 
-  download(appId: string, pk: string): Promise<any> {
-    this._base.endpoint = '/apps/' + appId + '/native-builds';
-    return this._base.get(pk + '/download');
-  }
+  download(appId: string, pk: string): Promise<any> { return super.get(appId, pk + '/download'); }
 
-  get(appId: string, pk: string): Promise<NativeBuild> {
-    this._base.endpoint = '/apps/' + appId + '/native-builds';
-    return this._base.get(pk);
-  }
+  get(appId: string, pk: string): Promise<NativeBuild> { return super.get(appId, pk); }
 
-  list(appId: string, params?: PackageList): Promise<Array<NativeBuild>> {
-    this._base.endpoint = '/apps/' + appId + '/native-builds';
-    return this._base.list(params);
-  }
+  list(appId: string, params?: PackageList): Promise<Array<NativeBuild>> { return super.list(appId, params); }
 
-  patch(appId: string, pk: string, body: NativeBuild): Promise<NativeBuild> {
-    this._base.endpoint = '/apps/' + appId + '/native-builds';
-    return this._base.patch(pk, body);
-  }
+  patch(appId: string, pk: string, body: NativeBuild): Promise<NativeBuild> { return super.patch(appId, pk, body); }
 
-  post(appId: string, body: PackagePost): Promise<any> {
-    this._base.endpoint = '/apps/' + appId + '/native-builds';
-    return this._base.post(body);
-  }
+  post(appId: string, body: PackagePost): Promise<any> { return super.post(appId, body); }
 }

@@ -1,4 +1,5 @@
 import { Api } from '../util/api';
+import { BaseResource } from './base';
 export interface User {
     id: number;
     username: string;
@@ -16,8 +17,7 @@ export interface UserPatch {
     new_password?: string;
     password: string;
 }
-export declare class UserResource {
-    private _base;
+export declare class UserResource extends BaseResource {
     constructor(api: Api);
     del(pk: string): Promise<any>;
     delToken(pk: string, tokenId: string): Promise<any>;

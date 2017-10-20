@@ -23,14 +23,16 @@ var ProClient = /** @class */ (function () {
         this.api = new Api(this.env);
         // Instantiate base resources
         var apps = new AppsResource(this.api);
+        var user = new UserResource(this.api);
         // Instantiate subresources
         var snapshots = new SnapshotsResource(apps);
+        var packages = new PackageResource(apps);
         // Set resources on client
         this.resource = {
             apps: apps,
             snapshots: snapshots,
-            packages: new PackageResource(this.api),
-            user: new UserResource(this.api)
+            packages: packages,
+            user: user
         };
     }
     ProClient.prototype.login = function (email, password) {

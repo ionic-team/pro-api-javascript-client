@@ -20,42 +20,23 @@ export interface UserPatch {
   password: string;
 }
 
-export class UserResource {
-  private _base: BaseResource
+export class UserResource extends BaseResource {
 
-  constructor(api: Api) {
-    this._base = new BaseResource('/users', api);
-  }
+  constructor(api: Api) { super('/users', api); }
 
-  del(pk: string): Promise<any> {
-    return this._base.del(pk);
-  }
+  del(pk: string): Promise<any> { return super.del(pk); }
 
-  delToken(pk: string, tokenId: string): Promise<any> {
-    return this._base.del(pk + '/tokens/' + tokenId);
-  }
+  delToken(pk: string, tokenId: string): Promise<any> { return super.del(pk + '/tokens/' + tokenId); }
 
-  get(pk: string): Promise<User> {
-    return this._base.get(pk);
-  }
+  get(pk: string): Promise<User> { return super.get(pk); }
 
-  getDashMeta(pk: string): Promise<any> {
-    return this._base.get(pk + '/dash-metadata');
-  }
+  getDashMeta(pk: string): Promise<any> { return super.get(pk + '/dash-metadata'); }
 
-  listTokens(pk: string): Promise<any> {
-    return this._base.get(pk + '/tokens');
-  }
+  listTokens(pk: string): Promise<any> { return super.get(pk + '/tokens'); }
 
-  patch(pk: string, body: UserPatch): Promise<User> {
-    return this._base.patch(pk, body);
-  }
+  patch(pk: string, body: UserPatch): Promise<User> { return super.patch(pk, body); }
 
-  post(body: User): Promise<User> {
-    return this._base.post(body);
-  }
+  post(body: User): Promise<User> { return super.post(body); }
 
-  setDashMeta(pk: string, meta: any): Promise<any>  {
-    return this.patch(pk + '/dash-metadata', meta);
-  }
+  setDashMeta(pk: string, meta: any): Promise<any>  { return super.patch(pk + '/dash-metadata', meta); }
 }

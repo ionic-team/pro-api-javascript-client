@@ -1,4 +1,5 @@
-import { Api } from '../util/api';
+import { BaseResource } from './base';
+import { SubResource } from './sub';
 import { Snapshot } from './snapshot';
 export interface PackagePost {
     snapshot_id: string;
@@ -19,9 +20,8 @@ export interface NativeBuild {
     state: string;
     snapshot: Snapshot;
 }
-export declare class PackageResource {
-    private _base;
-    constructor(api: Api);
+export declare class PackageResource extends SubResource {
+    constructor(base: BaseResource);
     del(appId: string, pk: string): Promise<NativeBuild>;
     download(appId: string, pk: string): Promise<any>;
     get(appId: string, pk: string): Promise<NativeBuild>;
