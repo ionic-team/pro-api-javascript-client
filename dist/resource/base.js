@@ -3,60 +3,60 @@ var BaseResource = /** @class */ (function () {
         this.endpoint = endpoint;
         this.api = api;
     }
-    BaseResource.prototype.del = function (pk, params) {
+    BaseResource.prototype.del = function (pk, params, internal) {
         var _this = this;
         if (params) {
             pk += (pk.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(function (k) { return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }).join('&');
         }
         return new Promise(function (resolve, reject) {
-            _this.api.del(_this.endpoint + '/' + pk).then(function (res) {
+            _this.api.del(_this.endpoint + '/' + pk, internal).then(function (res) {
                 resolve(res.data);
             }, function (err) {
                 reject(err.error || { "error": "Unknown" });
             });
         });
     };
-    BaseResource.prototype.get = function (pk, params) {
+    BaseResource.prototype.get = function (pk, params, internal) {
         var _this = this;
         if (params) {
             pk += (pk.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(function (k) { return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }).join('&');
         }
         return new Promise(function (resolve, reject) {
-            _this.api.get(_this.endpoint + '/' + pk).then(function (res) {
+            _this.api.get(_this.endpoint + '/' + pk, internal).then(function (res) {
                 resolve(res.data);
             }, function (err) {
                 reject(err.error || { "error": "Unknown" });
             });
         });
     };
-    BaseResource.prototype.list = function (params) {
+    BaseResource.prototype.list = function (params, internal) {
         var _this = this;
         var queryString = '/';
         if (params) {
             queryString += (queryString.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(function (k) { return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }).join('&');
         }
         return new Promise(function (resolve, reject) {
-            _this.api.get(_this.endpoint + queryString).then(function (res) {
+            _this.api.get(_this.endpoint + queryString, internal).then(function (res) {
                 resolve(res.data);
             }, function (err) {
                 reject(err.error || { "error": "Unknown" });
             });
         });
     };
-    BaseResource.prototype.patch = function (pk, body) {
+    BaseResource.prototype.patch = function (pk, body, internal) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.api.patch(_this.endpoint + '/' + pk, body).then(function (res) {
+            _this.api.patch(_this.endpoint + '/' + pk, body, internal).then(function (res) {
                 resolve(res.data);
             }, function (err) {
                 reject(err.error || { "error": "Unknown" });
             });
         });
     };
-    BaseResource.prototype.post = function (body) {
+    BaseResource.prototype.post = function (body, internal) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.api.post(_this.endpoint, body).then(function (res) {
+            _this.api.post(_this.endpoint, body, internal).then(function (res) {
                 resolve(res.data);
             }, function (err) {
                 reject(err.error || { "error": "Unknown" });

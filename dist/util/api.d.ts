@@ -19,13 +19,17 @@ export interface ApiCallConfig {
     method: string;
     body?: any;
 }
+export interface InternalConfig {
+    expire?: number;
+    details?: any;
+}
 export declare class Api {
     host: string;
     apiToken: string;
     constructor(env: Environment);
-    private _call(endpoint, config);
-    del(endpoint: string): Promise<ApiResponse>;
-    get(endpoint: string): Promise<ApiResponse>;
-    post(endpoint: string, body: any): Promise<ApiResponse>;
-    patch(endpoint: string, body: any): Promise<ApiResponse>;
+    private _call(endpoint, config, internal?);
+    del(endpoint: string, internal?: InternalConfig): Promise<ApiResponse>;
+    get(endpoint: string, internal?: InternalConfig): Promise<ApiResponse>;
+    post(endpoint: string, body: any, internal?: InternalConfig): Promise<ApiResponse>;
+    patch(endpoint: string, body: any, internal?: InternalConfig): Promise<ApiResponse>;
 }

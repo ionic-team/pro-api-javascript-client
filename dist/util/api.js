@@ -33,6 +33,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+import { makeInternalToken } from './crypto';
+import { SECRET } from '../environment';
 import * as request from 'superagent';
 var Api = /** @class */ (function () {
     function Api(env) {
@@ -41,7 +43,7 @@ var Api = /** @class */ (function () {
             this.host = env.host;
         }
     }
-    Api.prototype._call = function (endpoint, config) {
+    Api.prototype._call = function (endpoint, config, internal) {
         return __awaiter(this, void 0, void 0, function () {
             var req, res;
             return __generator(this, function (_a) {
@@ -52,8 +54,14 @@ var Api = /** @class */ (function () {
                             req = req.send(config.body);
                         }
                         req = req.set("Content-type", "application/json");
-                        if (this.apiToken) {
+                        if (internal) {
+                            req = req.set("Authorization", "Bearer " + makeInternalToken(internal.details, internal.expire));
+                        }
+                        else if (this.apiToken) {
                             req = req.set("Authorization", "Bearer " + this.apiToken);
+                        }
+                        else if (SECRET !== 'fake') {
+                            console.log("TODO");
                         }
                         return [4 /*yield*/, req];
                     case 1:
@@ -69,27 +77,27 @@ var Api = /** @class */ (function () {
             });
         });
     };
-    Api.prototype.del = function (endpoint) {
+    Api.prototype.del = function (endpoint, internal) {
         return this._call(endpoint, {
             method: 'delete'
-        });
+        }, internal);
     };
-    Api.prototype.get = function (endpoint) {
+    Api.prototype.get = function (endpoint, internal) {
         return this._call(endpoint, {
             method: 'get'
-        });
+        }, internal);
     };
-    Api.prototype.post = function (endpoint, body) {
+    Api.prototype.post = function (endpoint, body, internal) {
         return this._call(endpoint, {
             method: 'post',
             body: body
-        });
+        }, internal);
     };
-    Api.prototype.patch = function (endpoint, body) {
+    Api.prototype.patch = function (endpoint, body, internal) {
         return this._call(endpoint, {
             method: 'patch',
             body: body
-        });
+        }, internal);
     };
     return Api;
 }());
