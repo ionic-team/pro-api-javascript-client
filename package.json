@@ -7,7 +7,9 @@
   "issue": "https://github.com/ionic-team/pro-sdk/issues",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "node_modules/.bin/tsc"
+    "build": "tsc",
+    "test": "jest --watch",
+    "test:singlerun": "jest"
   },
   "keywords": [
     "typescript",
@@ -23,6 +25,28 @@
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^7.2.3",
-    "@types/superagent": "^3.5.6"
+    "@types/superagent": "^3.5.6",
+    "jest": "^21.2.1",
+    "ts-jest": "^21.1.4"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "globals": {
+      "ts-jest": {
+        "skipBabel": true
+      }
+    }
   }
 }
