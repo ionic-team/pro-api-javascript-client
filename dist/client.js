@@ -49,6 +49,7 @@ class ProClient {
                 console.log("Logged in user:", this.user.name);
                 resolve(this.user);
             }, (err) => {
+                //console.log()
                 console.error("Login error:", err.error.message || "Unknown");
                 reject(err.error);
             });

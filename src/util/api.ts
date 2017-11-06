@@ -55,12 +55,20 @@ export class Api {
       console.log("TODO");
     }
 
-    const res = await req;
+    try {
+      const res = await req;
 
-    if (res.ok) {
-      return res.body;
-    } else {
-      throw res.body;
+      if (res.ok) {
+        return res.body;
+      } else {
+        throw res.body;
+      }
+    } catch(e) {
+      if (e.response && e.response.body) {
+        throw e.response.body;
+      } else {
+        throw e;
+      }
     }
   }
   

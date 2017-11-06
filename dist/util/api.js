@@ -34,12 +34,22 @@ class Api {
             else if (environment_1.SECRET !== 'fake') {
                 console.log("TODO");
             }
-            const res = yield req;
-            if (res.ok) {
-                return res.body;
+            try {
+                const res = yield req;
+                if (res.ok) {
+                    return res.body;
+                }
+                else {
+                    throw res.body;
+                }
             }
-            else {
-                throw res.body;
+            catch (e) {
+                if (e.response && e.response.body) {
+                    throw e.response.body;
+                }
+                else {
+                    throw e;
+                }
             }
         });
     }
