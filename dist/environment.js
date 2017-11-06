@@ -1,6 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // Internal use only
-var secret = 'fake';
+let secret = 'fake';
 if (process && process.env) {
     secret = process.env.SECRET || 'fake';
 }
-export var SECRET = secret;
+exports.SECRET = secret;

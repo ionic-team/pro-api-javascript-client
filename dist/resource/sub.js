@@ -1,29 +1,30 @@
-import { BaseResource } from './base';
-var SubResource = /** @class */ (function () {
-    function SubResource(base, endpoint) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const base_1 = require("./base");
+class SubResource {
+    constructor(base, endpoint) {
         this.endpoint = endpoint;
-        this.base = new BaseResource(base.endpoint, base.api);
+        this.base = new base_1.BaseResource(base.endpoint, base.api);
     }
-    SubResource.prototype.del = function (basePk, pk, params) {
+    del(basePk, pk, params) {
         this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
         return this.base.del(pk, params);
-    };
-    SubResource.prototype.get = function (basePk, pk, params) {
+    }
+    get(basePk, pk, params) {
         this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
         return this.base.get(pk, params);
-    };
-    SubResource.prototype.list = function (basePk, params) {
+    }
+    list(basePk, params) {
         this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
         return this.base.list(params);
-    };
-    SubResource.prototype.patch = function (basePk, pk, body) {
+    }
+    patch(basePk, pk, body) {
         this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
         return this.base.patch(pk, body);
-    };
-    SubResource.prototype.post = function (basePk, body) {
+    }
+    post(basePk, body) {
         this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
         return this.base.post(body);
-    };
-    return SubResource;
-}());
-export { SubResource };
+    }
+}
+exports.SubResource = SubResource;

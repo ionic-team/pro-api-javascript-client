@@ -8,9 +8,9 @@
       "dom",
       "esnext"
     ],
-    "module": "esnext",
+    "module": "commonjs",
     "outDir": "dist",
-    "target": "ES5",
+    "target": "es6",
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },

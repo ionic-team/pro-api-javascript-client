@@ -1,11 +1,13 @@
-import { sign } from 'jsonwebtoken';
-import { SECRET } from '../environment';
-export function makeInternalToken(details, expire) {
-    if (expire === void 0) { expire = 300; }
-    var claims = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const jsonwebtoken_1 = require("jsonwebtoken");
+const environment_1 = require("../environment");
+function makeInternalToken(details, expire = 300) {
+    let claims = {
         exp: Math.floor(Date.now() / 1000) + expire,
         iss: 'ionic.js.client',
         details: details
     };
-    return sign(claims, SECRET);
+    return jsonwebtoken_1.sign(claims, environment_1.SECRET);
 }
+exports.makeInternalToken = makeInternalToken;

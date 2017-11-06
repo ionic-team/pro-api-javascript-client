@@ -1,10 +1,12 @@
-import { Api } from './util/api';
-import { AppsResource } from './resource/apps';
-import { PackageResource } from './resource/package';
-import { SnapshotsResource } from './resource/snapshot';
-import { UserResource } from './resource/user';
-var ProClient = /** @class */ (function () {
-    function ProClient(cfg) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const api_1 = require("./util/api");
+const apps_1 = require("./resource/apps");
+const package_1 = require("./resource/package");
+const snapshot_1 = require("./resource/snapshot");
+const user_1 = require("./resource/user");
+class ProClient {
+    constructor(cfg) {
         this.user = null;
         // Set config from env
         this.env = {
@@ -20,13 +22,13 @@ var ProClient = /** @class */ (function () {
             }
         }
         // Instantiate API
-        this.api = new Api(this.env);
+        this.api = new api_1.Api(this.env);
         // Instantiate base resources
-        var apps = new AppsResource(this.api);
-        var user = new UserResource(this.api);
+        var apps = new apps_1.AppsResource(this.api);
+        var user = new user_1.UserResource(this.api);
         // Instantiate subresources
-        var snapshots = new SnapshotsResource(apps);
-        var packages = new PackageResource(apps);
+        var snapshots = new snapshot_1.SnapshotsResource(apps);
+        var packages = new package_1.PackageResource(apps);
         // Set resources on client
         this.resource = {
             apps: apps,
@@ -35,24 +37,22 @@ var ProClient = /** @class */ (function () {
             user: user
         };
     }
-    ProClient.prototype.login = function (email, password) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.api.post('/login', {
+    login(email, password) {
+        return new Promise((resolve, reject) => {
+            this.api.post('/login', {
                 email: email,
                 password: password,
                 source: 'api'
-            }).then(function (res) {
-                _this.user = res.data.user;
-                _this.api.apiToken = res.data.token;
-                console.log("Logged in user:", _this.user.name);
-                resolve(_this.user);
-            }, function (err) {
+            }).then((res) => {
+                this.user = res.data.user;
+                this.api.apiToken = res.data.token;
+                console.log("Logged in user:", this.user.name);
+                resolve(this.user);
+            }, (err) => {
                 console.error("Login error:", err.error.message || "Unknown");
                 reject(err.error);
             });
         });
-    };
-    return ProClient;
-}());
-export { ProClient };
+    }
+}
+exports.ProClient = ProClient;
