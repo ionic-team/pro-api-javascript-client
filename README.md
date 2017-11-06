@@ -1,6 +1,8 @@
 # Ionic Pro API Client
 
-A simple JavaScript client for interacting with Ionic Pro
+A simple JavaScript client for interacting with the Ionic Pro API.
+
+Note: this is meant for API access, not end-user apps. For most users, the [Pro Client](https://github.com/ionic-team/ionic-pro-client) is actually what you want.
 
 ## Alpha Notice
 
