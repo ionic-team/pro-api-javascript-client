@@ -1,8 +1,12 @@
 import { BaseResource } from './base';
 import { SubResource } from './sub';
-import { S3UploadFields } from '../util/s3';
+import { S3SignedRequest } from '../util/s3';
 export interface SourceMapCreatedResponse {
-    fields: S3UploadFields;
+    name: string;
+    version: string;
+    commit: string;
+    platform_string: string;
+    sourcemap_post: S3SignedRequest;
 }
 export interface SourceMap {
     sourcemap_id: string;

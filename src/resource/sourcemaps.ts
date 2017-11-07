@@ -1,9 +1,13 @@
 import { BaseResource } from './base';
 import { SubResource } from './sub';
-import { S3UploadFields, s3upload } from '../util/s3';
+import { S3SignedRequest, s3upload } from '../util/s3';
 
 export interface SourceMapCreatedResponse {
-  fields: S3UploadFields
+  name: string;
+  version: string;
+  commit: string;
+  platform_string: string;
+  sourcemap_post: S3SignedRequest;
 }
 
 export interface SourceMap {
@@ -35,5 +39,5 @@ export class SourceMapResource extends SubResource {
 
   createSourcemap(appId: string, body: SourceMapCreateRequest): Promise<SourceMapCreatedResponse> { return super.post(appId, body); }
 
-  uploadSourcemap(body: SourceMapCreatedResponse, fileData: string): Promise<void> { return s3upload(body.fields, fileData); }
+  uploadSourcemap(body: SourceMapCreatedResponse, fileData: string): Promise<void> { return s3upload(body.sourcemap_post, fileData); }
 }
