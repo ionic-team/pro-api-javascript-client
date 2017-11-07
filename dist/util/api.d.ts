@@ -27,6 +27,8 @@ export declare class Api {
     host: string;
     apiToken: string;
     constructor(env: Environment);
+    setToken(token: string): void;
+    getToken(): string;
     private _call(endpoint, config, internal?);
     del(endpoint: string, internal?: InternalConfig): Promise<ApiResponse>;
     get(endpoint: string, internal?: InternalConfig): Promise<ApiResponse>;

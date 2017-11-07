@@ -41,6 +41,14 @@ export class Api {
     }
   }
 
+  setToken(token: string) {
+    this.apiToken = token;
+  }
+
+  getToken() {
+    return this.apiToken;
+  }
+
   private async _call(endpoint: any, config: ApiCallConfig, internal?: InternalConfig): Promise<ApiResponse> {
     let req = request(config.method, this.host + endpoint);
     if (config.body) {

@@ -15,6 +15,7 @@ export declare class ProClient {
     resource: ClientResources;
     user: User;
     constructor(cfg?: Environment);
-    getToken(): string;
+    getUserToken(): string;
+    setUserToken(token: string): void;
     login(email: string, password: string): Promise<User>;
 }

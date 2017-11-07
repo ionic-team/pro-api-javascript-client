@@ -18,6 +18,12 @@ class Api {
             this.host = env.host;
         }
     }
+    setToken(token) {
+        this.apiToken = token;
+    }
+    getToken() {
+        return this.apiToken;
+    }
     _call(endpoint, config, internal) {
         return __awaiter(this, void 0, void 0, function* () {
             let req = request(config.method, this.host + endpoint);

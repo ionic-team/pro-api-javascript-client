@@ -53,8 +53,12 @@ export class ProClient {
     }
   }
 
-  getToken() {
-    return this.api.apiToken;
+  getUserToken() {
+    return this.api.getToken();
+  }
+
+  setUserToken(token: string) {
+    this.api.setToken(token);
   }
 
   login(email: string, password: string): Promise<User>  {
@@ -65,8 +69,7 @@ export class ProClient {
         source: 'api'
       }).then((res: ApiResponse) => {
         this.user = res.data.user;
-        this.api.apiToken = res.data.token;
-        console.log("Logged in user:", this.user.name);
+        this.api.setToken(res.data.token);
         resolve(this.user);
       }, (err: ApiResponse) => {
         //console.log()
