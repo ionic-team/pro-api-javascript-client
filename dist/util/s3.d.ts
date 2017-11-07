@@ -3,4 +3,4 @@ export interface S3SignedRequest {
     fields: any;
     [key: string]: any;
 }
-export declare const s3upload: (s3req: S3SignedRequest, fileData: string) => Promise<void>;
+export declare const s3upload: (s3req: S3SignedRequest, fileData: string) => Promise<any>;

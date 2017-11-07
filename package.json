@@ -1,6 +1,6 @@
 {
   "name": "@ionic/pro-api-javascript-client",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A simple JasvaScript client for interacting with Ionic Pro",
   "main": "dist/index.js",
   "repository": "https://github.com/ionic-team/pro-sdk.git",
