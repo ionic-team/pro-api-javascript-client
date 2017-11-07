@@ -1,14 +1,18 @@
 import { ApiResponse, Api } from './util/api';
 import { Environment } from './environment';
 import { AppsResource } from './resource/apps';
+import { MonitoringResource } from './resource/monitoring';
 import { PackageResource } from './resource/package';
 import { SnapshotsResource } from './resource/snapshot';
+import { SourceMapResource } from './resource/sourcemaps';
 import { User, UserResource } from './resource/user';
 
 export interface ClientResources {
   apps: AppsResource;
+  monitoring: MonitoringResource;
   snapshots: SnapshotsResource;
   packages: PackageResource;
+  sourcemaps: SourceMapResource;
   user: UserResource;
 }
 
@@ -39,17 +43,22 @@ export class ProClient {
     // Instantiate base resources
     var apps = new AppsResource(this.api);
     var user = new UserResource(this.api);
+    var monitoring = new MonitoringResource(this.api);
 
     // Instantiate subresources
     var snapshots = new SnapshotsResource(apps);
     var packages = new PackageResource(apps);
 
+    var sourcemaps = new SourceMapResource(monitoring);
+
     // Set resources on client
     this.resource = {
-      apps: apps,
-      snapshots: snapshots,
-      packages: packages,
-      user: user
+      apps,
+      monitoring,
+      packages,
+      snapshots,
+      sourcemaps,
+      user
     }
   }
 

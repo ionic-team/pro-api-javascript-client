@@ -2,8 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const api_1 = require("./util/api");
 const apps_1 = require("./resource/apps");
+const monitoring_1 = require("./resource/monitoring");
 const package_1 = require("./resource/package");
 const snapshot_1 = require("./resource/snapshot");
+const sourcemaps_1 = require("./resource/sourcemaps");
 const user_1 = require("./resource/user");
 class ProClient {
     constructor(cfg) {
@@ -26,15 +28,19 @@ class ProClient {
         // Instantiate base resources
         var apps = new apps_1.AppsResource(this.api);
         var user = new user_1.UserResource(this.api);
+        var monitoring = new monitoring_1.MonitoringResource(this.api);
         // Instantiate subresources
         var snapshots = new snapshot_1.SnapshotsResource(apps);
         var packages = new package_1.PackageResource(apps);
+        var sourcemaps = new sourcemaps_1.SourceMapResource(monitoring);
         // Set resources on client
         this.resource = {
-            apps: apps,
-            snapshots: snapshots,
-            packages: packages,
-            user: user
+            apps,
+            monitoring,
+            packages,
+            snapshots,
+            sourcemaps,
+            user
         };
     }
     getUserToken() {
