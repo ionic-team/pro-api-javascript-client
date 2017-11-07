@@ -25,7 +25,7 @@ export const s3upload = async (s3req: S3SignedRequest, fileData: string) => {
           return Promise.reject(new Error(`Unexpected status code from AWS: ${res.status}`));
         }
 
-        Promise.resolve();
+        Promise.resolve(res);
       });
   } catch(e) {
     console.error('Error uploading')

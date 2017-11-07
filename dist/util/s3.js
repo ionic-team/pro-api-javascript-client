@@ -25,7 +25,7 @@ exports.s3upload = (s3req, fileData) => __awaiter(this, void 0, void 0, function
             if (res.status !== 204) {
                 return Promise.reject(new Error(`Unexpected status code from AWS: ${res.status}`));
             }
-            Promise.resolve();
+            Promise.resolve(res);
         });
     }
     catch (e) {
