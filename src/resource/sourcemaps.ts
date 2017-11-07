@@ -33,7 +33,7 @@ export class SourceMapResource extends SubResource {
 
   constructor(base: BaseResource) { super(base, '/sourcemaps'); }
 
-  createSourcemap(appId: string, body: SourceMapCreateRequest): Promise<SourceMapCreatedResponse> { return super.post(appId + '/sourcemaps', body); }
+  createSourcemap(appId: string, body: SourceMapCreateRequest): Promise<SourceMapCreatedResponse> { return super.post(appId, body); }
 
   uploadSourcemap(body: SourceMapCreatedResponse, fileData: string): Promise<void> { return s3upload(body.fields, fileData); }
 }
