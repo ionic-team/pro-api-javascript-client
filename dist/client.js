@@ -37,6 +37,9 @@ class ProClient {
             user: user
         };
     }
+    getToken() {
+        return this.api.apiToken;
+    }
     login(email, password) {
         return new Promise((resolve, reject) => {
             this.api.post('/login', {
