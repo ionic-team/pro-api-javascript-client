@@ -1,5 +1,5 @@
 export interface Environment {
-    debug?: Boolean;
+    debug?: boolean;
     host?: string;
 }
 export declare const SECRET: string;

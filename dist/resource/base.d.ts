@@ -3,6 +3,7 @@ export declare class BaseResource {
     endpoint: string;
     api: Api;
     constructor(endpoint: string, api: Api);
+    requestPromise(executor: (resolve: Function, reject: Function) => void): Promise<any>;
     del(pk: string, params?: any, internal?: InternalConfig): Promise<any>;
     get(pk: string, params?: any, internal?: InternalConfig): Promise<any>;
     list(params?: any, internal?: InternalConfig): Promise<any>;

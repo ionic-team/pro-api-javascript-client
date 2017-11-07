@@ -1,6 +1,6 @@
 // Instantiation config
 export interface Environment {
-  debug?: Boolean;
+  debug?: boolean;
   host?: string;
 }
 

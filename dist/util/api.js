@@ -13,10 +13,12 @@ const environment_1 = require("../environment");
 const request = require("superagent");
 class Api {
     constructor(env) {
+        this.debug = false;
         this.apiToken = null;
         if (env.host) {
             this.host = env.host;
         }
+        this.debug = env.debug;
     }
     setToken(token) {
         this.apiToken = token;
@@ -26,6 +28,9 @@ class Api {
     }
     _call(endpoint, config, internal) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (this.debug) {
+                console.log(`[API] - ${config.method.toUpperCase()} - ${this.host + endpoint}`);
+            }
             let req = request(config.method, this.host + endpoint);
             if (config.body) {
                 req = req.send(config.body);

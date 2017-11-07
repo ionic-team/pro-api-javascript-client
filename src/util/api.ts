@@ -33,12 +33,14 @@ export interface InternalConfig {
 
 export class Api {
   host: string;
+  debug: boolean = false;
   apiToken: string = null;
 
   constructor(env: Environment) {
     if (env.host) {
       this.host = env.host;
     }
+    this.debug = env.debug;
   }
 
   setToken(token: string) {
@@ -50,6 +52,10 @@ export class Api {
   }
 
   private async _call(endpoint: any, config: ApiCallConfig, internal?: InternalConfig): Promise<ApiResponse> {
+    if (this.debug) {
+      console.log(`[API] - ${config.method.toUpperCase()} - ${this.host + endpoint}`);
+    }
+
     let req = request(config.method, this.host + endpoint);
     if (config.body) {
       req = req.send(config.body);

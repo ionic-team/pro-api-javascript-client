@@ -4,6 +4,13 @@ export class BaseResource {
 
   constructor(public endpoint: string, public api: Api) {}
 
+  requestPromise(executor: (resolve: Function, reject: Function) => void): Promise<any> {
+    return new Promise(executor)
+      .catch((e) => {
+        console.error('Unable to perform request', e);
+      });
+  }
+
   del(pk: string, params?: any, internal?: InternalConfig): Promise<any> {
     if (params) {
       pk += (pk.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
@@ -21,7 +28,8 @@ export class BaseResource {
     if (params) {
       pk += (pk.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
     }
-    return new Promise((resolve, reject) => {
+
+    return this.requestPromise((resolve, reject) => {
       this.api.get(this.endpoint + '/' + pk, internal).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {
@@ -35,7 +43,8 @@ export class BaseResource {
     if (params) {
       queryString += (queryString.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
     }
-    return new Promise((resolve, reject) => {
+
+    return this.requestPromise((resolve, reject) => {
       this.api.get(this.endpoint + queryString, internal).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {
@@ -45,7 +54,7 @@ export class BaseResource {
     }
 
   patch(pk: string, body: any, internal?: InternalConfig): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return this.requestPromise((resolve, reject) => {
       this.api.patch(this.endpoint + '/' + pk, body, internal).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {
@@ -55,7 +64,7 @@ export class BaseResource {
   }
 
   post(body: any, internal?: InternalConfig): Promise<any> { 
-    return new Promise((resolve, reject) => {
+    return this.requestPromise((resolve, reject) => {
       this.api.post(this.endpoint, body, internal).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {

@@ -25,6 +25,7 @@ export interface InternalConfig {
 }
 export declare class Api {
     host: string;
+    debug: boolean;
     apiToken: string;
     constructor(env: Environment);
     setToken(token: string): void;

@@ -16,8 +16,16 @@ export interface SourceMap {
     created: string;
     deleted: string;
 }
+export interface SourceMapCreateRequest {
+    app_id: string;
+    name: string;
+    version: string;
+    pro_snapshot_id?: string;
+    platform_string?: string;
+    commit?: string;
+}
 export declare class SourceMapResource extends SubResource {
     constructor(base: BaseResource);
-    createSourcemap(appId: string, body: SourceMap): Promise<SourceMapCreatedResponse>;
+    createSourcemap(appId: string, body: SourceMapCreateRequest): Promise<SourceMapCreatedResponse>;
     uploadSourcemap(body: SourceMapCreatedResponse, fileData: string): Promise<void>;
 }
