@@ -8,6 +8,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "watch": "tsc -w",
     "test": "jest --watch",
     "test:singlerun": "jest",
     "prepublishOnly": "npm run build"
