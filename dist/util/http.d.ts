@@ -1,2 +1,3 @@
 import * as request from 'superagent';
-export { request };
+declare const join: (...segs: any[]) => string;
+export { join, request };

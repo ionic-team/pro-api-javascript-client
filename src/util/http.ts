@@ -1,3 +1,7 @@
 import * as request from 'superagent'
 
-export { request };
+const join = (...segs) => {
+  return segs.join('/');
+};
+
+export { join, request };

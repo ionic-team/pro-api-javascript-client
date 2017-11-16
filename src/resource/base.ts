@@ -1,4 +1,5 @@
 import { Api, ApiResponse, InternalConfig } from '../util/api'
+import { join } from '../util/http';
 
 export class BaseResource {
 
@@ -11,12 +12,12 @@ export class BaseResource {
       });
   }
 
-  del(pk: string, params?: any, internal?: InternalConfig): Promise<any> {
+  del(pk: string, params?: any, path: string = '', internal?: InternalConfig): Promise<any> {
     if (params) {
       pk += (pk.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
     }
     return new Promise((resolve, reject) => {
-      this.api.del(this.endpoint + '/' + pk, internal).then((res: ApiResponse) => {
+      this.api.del(join(this.endpoint, path, pk), internal).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {
         reject(err.error || {"error": "Unknown"});
@@ -24,13 +25,13 @@ export class BaseResource {
     });
   }
 
-  get(pk: string, params?: any, internal?: InternalConfig): Promise<any> {
+  get(pk: string, params?: any, path: string = '', internal?: InternalConfig): Promise<any> {
     if (params) {
       pk += (pk.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
     }
 
     return this.requestPromise((resolve, reject) => {
-      this.api.get(this.endpoint + '/' + pk, internal).then((res: ApiResponse) => {
+      this.api.get(join(this.endpoint, path, pk), internal).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {
         reject(err.error || {"error": "Unknown"});
@@ -38,14 +39,14 @@ export class BaseResource {
     });
   }
 
-  list(params?: any, internal?: InternalConfig): Promise<any> { 
+  list(params?: any, path: string = '', internal?: InternalConfig): Promise<any> { 
     let queryString = '/';
     if (params) {
       queryString += (queryString.indexOf('?') === -1 ? '?' : '&') + Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
     }
 
     return this.requestPromise((resolve, reject) => {
-      this.api.get(this.endpoint + queryString, internal).then((res: ApiResponse) => {
+      this.api.get(join(this.endpoint, path) +  queryString, internal).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {
         reject(err.error || {"error": "Unknown"});
@@ -53,9 +54,9 @@ export class BaseResource {
     });
     }
 
-  patch(pk: string, body: any, internal?: InternalConfig): Promise<any> {
+  patch(pk: string, body: any, path: string = '', internal?: InternalConfig): Promise<any> {
     return this.requestPromise((resolve, reject) => {
-      this.api.patch(this.endpoint + '/' + pk, body, internal).then((res: ApiResponse) => {
+      this.api.patch(join(this.endpoint, path, pk), body, internal).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {
         reject(err.error || {"error": "Unknown"});
@@ -63,9 +64,9 @@ export class BaseResource {
     });
   }
 
-  post(body: any, internal?: InternalConfig): Promise<any> { 
+  post(body: any, path: string = '', internal?: InternalConfig): Promise<any> { 
     return this.requestPromise((resolve, reject) => {
-      this.api.post(this.endpoint, body, internal).then((res: ApiResponse) => {
+      this.api.post(join(this.endpoint, path), body, internal).then((res: ApiResponse) => {
         resolve(res.data);
       }, (err: ApiResponse) => {
         reject(err.error || {"error": "Unknown"});

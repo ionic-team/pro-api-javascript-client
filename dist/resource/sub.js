@@ -7,24 +7,19 @@ class SubResource {
         this.base = new base_1.BaseResource(base.endpoint, base.api);
     }
     del(basePk, pk, params) {
-        this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-        return this.base.del(pk, params);
+        return this.base.del(pk, params, basePk + this.endpoint);
     }
     get(basePk, pk, params) {
-        this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-        return this.base.get(pk, params);
+        return this.base.get(pk, params, basePk + this.endpoint);
     }
     list(basePk, params) {
-        this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-        return this.base.list(params);
+        return this.base.list(params, basePk + this.endpoint);
     }
     patch(basePk, pk, body) {
-        this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-        return this.base.patch(pk, body);
+        return this.base.patch(pk, body, basePk + this.endpoint);
     }
     post(basePk, body) {
-        this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-        return this.base.post(body);
+        return this.base.post(body, basePk + this.endpoint);
     }
 }
 exports.SubResource = SubResource;

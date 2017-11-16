@@ -8,27 +8,22 @@ export class SubResource {
   }
 
   del(basePk: string, pk: string, params?: any): Promise<any> {
-    this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-    return this.base.del(pk, params);
+    return this.base.del(pk, params, basePk + this.endpoint);
   }
 
   get(basePk: string, pk: string, params?: any): Promise<any> {
-    this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-    return this.base.get(pk, params);
+    return this.base.get(pk, params, basePk + this.endpoint);
   }
 
   list(basePk: string, params?: any): Promise<Array<any>> {
-    this.base.endpoint = this.base.endpoint + '/' + basePk  + this.endpoint;
-    return this.base.list(params);
+    return this.base.list(params, basePk  + this.endpoint);
   }
 
   patch(basePk: string, pk: string, body: any): Promise<any> {
-    this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-    return this.base.patch(pk, body);
+    return this.base.patch(pk, body, basePk + this.endpoint);
   }
 
   post(basePk: string, body: any): Promise<any> {
-    this.base.endpoint = this.base.endpoint + '/' + basePk + this.endpoint;
-    return this.base.post(body);
+    return this.base.post(body, basePk + this.endpoint);
   }
 }
